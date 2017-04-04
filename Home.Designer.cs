@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NeoHomePage));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panel1
@@ -57,10 +59,21 @@
             this.panel3.Size = new System.Drawing.Size(177, 137);
             this.panel3.TabIndex = 2;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(176, 33);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // NeoHomePage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(568, 443);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -78,5 +91,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button1;
     }
 }
