@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NeoHomePage));
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -60,6 +60,14 @@
             this.panel4.Size = new System.Drawing.Size(160, 160);
             this.panel4.TabIndex = 8;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panel1.Location = new System.Drawing.Point(15, 14);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(160, 160);
+            this.panel1.TabIndex = 5;
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.LimeGreen;
@@ -76,14 +84,6 @@
             this.panel2.Size = new System.Drawing.Size(160, 160);
             this.panel2.TabIndex = 6;
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.panel1.Location = new System.Drawing.Point(15, 14);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(160, 160);
-            this.panel1.TabIndex = 5;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(54, 51);
@@ -92,6 +92,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
