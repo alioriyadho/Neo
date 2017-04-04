@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace Neo
 {
-    public partial class NeoHomePage : Form
+    public partial class Manage : Form
     {
-        public NeoHomePage()
+        public Manage()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Manage ManageForm = new Manage();
-            ManageForm.Show();
         }
     }
 }
