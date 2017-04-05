@@ -13,9 +13,17 @@ namespace Neo
 {
     public partial class Manage : Form
     {
-        public Manage()
+        private string sqlQuery;
+        private string selectedPersonId;
+
+        public Manage(string sqlQueryIn)
         {
             InitializeComponent();
+
+            // lagra frågan i variabel
+            sqlQuery = sqlQueryIn;
+
+            MessageBox.Show(sqlQuery);
 
             // Fyll i listvyn
             getDataFromDb();
@@ -25,19 +33,86 @@ namespace Neo
         {
             listView1.View = View.Details;
 
+            // Skapa ett objekt för klassen
             DbManager dbOject = new DbManager();
-            var dt = dbOject.executeDbQuery("select * from Children");
+            
+            // Hämta in data.
+            var dt = dbOject.executeDbQuery(sqlQuery);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+                // Hämta objektet
                 DataRow dr = dt.Rows[i];
+
+                // Visa de olika attibuten i rätt kolumn
                 ListViewItem listitem = new ListViewItem(dr["person_id"].ToString());
                 listitem.SubItems.Add(dr["first_name"].ToString());
                 listitem.SubItems.Add(dr["last_name"].ToString());
                 listitem.SubItems.Add(dr["mother_first_name"].ToString() + " " + dr["mother_last_name"].ToString());
                 listitem.SubItems.Add(dr["planned_birthday"].ToString());
-                listitem.SubItems.Add(dr["interpreter"].ToString());
 
+                // Visa Ja eller Nej
+                if (dr["interpreter"].ToString() == "1")
+                {
+                    listitem.SubItems.Add("Ja");
+                }
+                else
+                {
+                    listitem.SubItems.Add("Nej");
+                }
+                
+
+                // Lägg upp i listan
                 listView1.Items.Add(listitem);
+            }
+        }
+
+        // Hanterar val av person i listvyn
+        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (listView1.SelectedIndices.Count <= 0)
+            {
+                // Ominit
+                selectedPersonId = null;
+                return;
+            }
+            int intselectedindex = listView1.SelectedIndices[0];
+            if (intselectedindex >= 0)
+            {
+                // Lagra det markerade idet i en global variabel
+                String text = listView1.Items[intselectedindex].Text;
+                selectedPersonId = text;
+            }
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            if(selectedPersonId == null)
+            {
+                MessageBox.Show("Välj först ett barn från listan nedan.", "Fel");
+            }
+            else
+            {
+                MessageBox.Show(selectedPersonId);
+
+                //
+                // Här ska vi visa fönstret som visar detaljerad information om barnets
+                //
+            }
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            if (selectedPersonId == null)
+            {
+                MessageBox.Show("Välj först ett barn från listan nedan.", "Fel");
+            }
+            else
+            {
+                MessageBox.Show(selectedPersonId);
+
+                //
+                // Här ska vi visa fönstret där man kan ändra uppgifter om barnet
+                //
             }
         }
     }
