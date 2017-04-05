@@ -16,5 +16,17 @@ namespace Neo
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Manage ManageForm = new Manage();
+            ManageForm.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Add AddForm = new Add();
+            AddForm.Show();
+        }
     }
 }
