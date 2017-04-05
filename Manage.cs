@@ -16,6 +16,9 @@ namespace Neo
         private string sqlQuery;
         private string selectedPersonId;
 
+        // Skapa ett objekt för klassen
+        DbManager dbOject = new DbManager();
+
         public Manage(string sqlQueryIn)
         {
             InitializeComponent();
@@ -32,10 +35,7 @@ namespace Neo
         public void getDataFromDb()
         {
             listView1.View = View.Details;
-
-            // Skapa ett objekt för klassen
-            DbManager dbOject = new DbManager();
-            
+           
             // Hämta in data.
             var dt = dbOject.executeDbQuery(sqlQuery);
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -92,8 +92,17 @@ namespace Neo
             }
             else
             {
-                MessageBox.Show(selectedPersonId);
+                // Hämta detaljer info från DB
+                var child = dbOject.executeDbQuery("select * from Children where person_id = " + selectedPersonId);
+                DataRow childDr = child.Rows[child.Rows.Count-1];
 
+                // Skapa objekt för klassen funkton
+                functions funcObject = new functions();
+
+                MessageBox.Show(childDr["first_name"].ToString() + " " + childDr["last_name"].ToString()
+                    + "\n\n2 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 61)
+                    + "\n6 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 186)
+                    + "\n12 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 365), "Detaljer");
                 //
                 // Här ska vi visa fönstret som visar detaljerad information om barnets
                 //
