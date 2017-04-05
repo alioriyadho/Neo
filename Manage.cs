@@ -25,18 +25,18 @@ namespace Neo
         {
             listView1.View = View.Details;
 
-            string constring = "Data Source=(LocalDB)/MSSQLLocalDB;AttachDbFilename=H:/Neonatalvården/Neo/Neo/db.mdf;Integrated Security=True";
-            SqlConnection con = new SqlConnection(constring);
-            SqlDataAdapter ada = new SqlDataAdapter("select * from Children", con);
-            DataTable dt = new DataTable();
-
+            DbManager dbOject = new DbManager();
+            var dt = dbOject.executeDbQuery("select * from Children");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 DataRow dr = dt.Rows[i];
                 ListViewItem listitem = new ListViewItem(dr["person_id"].ToString());
                 listitem.SubItems.Add(dr["first_name"].ToString());
-                listitem.SubItems.Add(dr["first_name"].ToString());
-                listitem.SubItems.Add(dr["first_name"].ToString());
+                listitem.SubItems.Add(dr["last_name"].ToString());
+                listitem.SubItems.Add(dr["mother_first_name"].ToString() + " " + dr["mother_last_name"].ToString());
+                listitem.SubItems.Add(dr["planned_birthday"].ToString());
+                listitem.SubItems.Add(dr["interpreter"].ToString());
+
                 listView1.Items.Add(listitem);
             }
         }
