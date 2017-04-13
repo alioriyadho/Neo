@@ -19,7 +19,7 @@ namespace Neo
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Manage ManageForm = new Manage();
+            Manage ManageForm = new Manage("select * from Children");
             ManageForm.Show();
         }
 
