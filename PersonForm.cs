@@ -75,28 +75,39 @@ namespace Neo
 
         private void savebutton_Click(object sender, EventArgs e)
         {
-            if(edit == true)
+            if (edit == true)
             {
                 updatePerson();
+
+                // Stäng fönsret
+                Close();
             }
             else
             {
+                // Kontroll personnymmret 
+                if (person_id.Text.Length < 10)
+                {
+                    MessageBox.Show("Personnummeret är ogiltigt");
+                }
+                else if (child_firstname.Text.Length > 0 && child_lastname.Text.Length > 0)
+                {
+                    insertPerson();
 
-            }
-
-            // Stäng fönsret
-            Close();
+                    // Stäng fönsret
+                    Close();
+                } 
+                else
+                {
+                    MessageBox.Show("Du måste fylla minst fylla i barnets för och efternamn");
+                }
+            }           
         }
 
         public void updatePerson()
         {
             // Tolk variabeln
-            string interpreterValue = "0";
-            if (interpreter.Checked == true)
-            {
-                interpreterValue = "1";
-            }
-
+            string interpreterValue = getInterpreterValue();
+            
             // Redigera data
             string sqlQuery = "UPDATE Children SET first_name = '" + child_firstname.Text
                 + "', last_name = '" + child_lastname.Text
@@ -109,6 +120,28 @@ namespace Neo
 
             // Executaaaaa
             dbOject.iuQuery(sqlQuery);
+        }
+
+        public void insertPerson()
+        {
+            string interpreterValue = getInterpreterValue();
+
+            // Skapa
+            string sqlQuery = "INSERT INTO Children (person_id, first_name, last_name, mother_first_name, mother_last_name, planned_birthday, interpreter, comments)" 
+                            + "VALUES('"+person_id.Text+"', '"+child_firstname.Text+"', '"+child_lastname.Text+"', '"+mother_firstname.Text+"', '"+mother_lastname.Text+"', '"+birthdayPicker.Value.ToShortDateString()+"', '"+interpreterValue+"', '"+comments.Text+"')";
+
+            // Executaaaaa
+            dbOject.iuQuery(sqlQuery);
+        }
+
+        public string getInterpreterValue()
+        {
+            string interpreterValue = "0";
+            if (interpreter.Checked == true)
+            {
+                interpreterValue = "1";
+            }
+            return interpreterValue;
         }
 
         private void PersonForm_FormClosing(object sender, FormClosingEventArgs e)
