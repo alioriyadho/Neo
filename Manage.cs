@@ -82,31 +82,6 @@ namespace Neo
             }
         }
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            if(selectedPersonId == null)
-            {
-                MessageBox.Show("Välj först ett barn från listan nedan.", "Fel");
-            }
-            else
-            {
-                // Hämta detaljer info från DB
-                var child = dbOject.executeDbQuery("select * from Children where person_id = " + selectedPersonId);
-                DataRow childDr = child.Rows[child.Rows.Count-1];
-
-                // Skapa objekt för klassen funkton
-                functions funcObject = new functions();
-
-                MessageBox.Show(childDr["first_name"].ToString() + " " + childDr["last_name"].ToString()
-                    + "\n\n2 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 61)
-                    + "\n6 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 186)
-                    + "\n12 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 365), "Detaljer");
-                //
-                // Här ska vi visa fönstret som visar detaljerad information om barnets
-                //
-            }
-        }
-
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             if (selectedPersonId == null)
@@ -133,6 +108,51 @@ namespace Neo
             Console.WriteLine("UPDATE");
             listView1.Items.Clear();
             getDataFromDb();
+        }
+
+        private void DeleteChild_Click(object sender, EventArgs e)
+        {
+            if (selectedPersonId == null)
+            {
+                MessageBox.Show("Välj först ett barn från listan nedan.", "Fel");
+            }
+            else
+            {
+                // Ta bort ett barn från DB
+                DialogResult dialog = dialog = MessageBox.Show("Vill du verkligen ta bort " + selectedPersonId + "?", "Ta bort", MessageBoxButtons.YesNo);
+                if (dialog == DialogResult.Yes)
+                {
+                    string sqlQuery = "DELETE FROM Children WHERE person_id = '" + selectedPersonId + "'";
+                    dbOject.iuQuery(sqlQuery);
+                    selectedPersonId = null;
+                    PerformRefresh();
+                }
+            }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            if (selectedPersonId == null)
+            {
+                MessageBox.Show("Välj först ett barn från listan nedan.", "Fel");
+            }
+            else
+            {
+                // Hämta detaljer info från DB
+                var child = dbOject.executeDbQuery("select * from Children where person_id = " + selectedPersonId);
+                DataRow childDr = child.Rows[child.Rows.Count - 1];
+
+                // Skapa objekt för klassen funkton
+                functions funcObject = new functions();
+
+                MessageBox.Show(childDr["first_name"].ToString() + " " + childDr["last_name"].ToString()
+                    + "\n\n2 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 61)
+                    + "\n6 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 186)
+                    + "\n12 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 365), "Detaljer");
+                //
+                // Här ska vi visa fönstret som visar detaljerad information om barnets
+                //
+            }
         }
     }
 }
