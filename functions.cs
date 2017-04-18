@@ -18,5 +18,12 @@ namespace Neo
 
             return MyNewDateValue.ToString();
         }
+
+        public string[] splitDate(string strDate)
+        {
+            string[] removeTime = strDate.Split(' ');
+            string[] arrDate = removeTime[0].Split('-');
+            return arrDate;
+        }
     }
 }

@@ -26,8 +26,6 @@ namespace Neo
             // lagra frågan i variabel
             sqlQuery = sqlQueryIn;
 
-            MessageBox.Show(sqlQuery);
-
             // Fyll i listvyn
             getDataFromDb();
         }
@@ -117,11 +115,10 @@ namespace Neo
             }
             else
             {
-                MessageBox.Show(selectedPersonId);
-
-                //
                 // Här ska vi visa fönstret där man kan ändra uppgifter om barnet
-                //
+                MessageBox.Show(selectedPersonId);
+                PersonForm personForm = new PersonForm(selectedPersonId, true);
+                personForm.Show();
             }
         }
     }
