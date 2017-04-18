@@ -116,10 +116,23 @@ namespace Neo
             else
             {
                 // Här ska vi visa fönstret där man kan ändra uppgifter om barnet
-                MessageBox.Show(selectedPersonId);
-                PersonForm personForm = new PersonForm(selectedPersonId, true);
+                PersonForm personForm = new PersonForm(selectedPersonId, true, this);
                 personForm.Show();
             }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            // Här ska vi visa ett tomt PersonForm 
+            PersonForm personForm = new PersonForm(selectedPersonId, false, this);
+            personForm.Show();
+        }
+
+        public void PerformRefresh()
+        {
+            Console.WriteLine("UPDATE");
+            listView1.Items.Clear();
+            getDataFromDb();
         }
     }
 }
