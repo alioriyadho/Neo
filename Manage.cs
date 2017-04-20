@@ -26,6 +26,9 @@ namespace Neo
             // lagra frågan i variabel
             sqlQuery = sqlQueryIn;
 
+            // 
+            this.Text = "Hantera";
+
             // Fyll i listvyn
             getDataFromDb();
         }

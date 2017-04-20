@@ -70,6 +70,10 @@ namespace Neo
                     // titel
                     this.Text = dr["first_name"].ToString() + " " + dr["first_name"].ToString() + " (" + dr["person_id"].ToString() + ")";
                 }
+            } 
+            else
+            {
+                this.Text = "Lägg till ett barn";
             }
         }
 
