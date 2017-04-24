@@ -15,16 +15,22 @@ namespace Neo
     {
         private string sqlQuery;
         private string selectedPersonId;
+        private functions funcObject;
+        private NeoHomePage homeWindow;
 
         // Skapa ett objekt för klassen
         DbManager dbOject = new DbManager();
 
-        public Manage(string sqlQueryIn)
+        public Manage(string sqlQueryIn, NeoHomePage homeIn)
         {
             InitializeComponent();
 
+            homeWindow = homeIn;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageForm_FormClosing);
+
             // lagra frågan i variabel
             sqlQuery = sqlQueryIn;
+            funcObject = new functions();
 
             // 
             this.Text = "Hantera";
@@ -95,6 +101,7 @@ namespace Neo
             {
                 // Här ska vi visa fönstret där man kan ändra uppgifter om barnet
                 PersonForm personForm = new PersonForm(selectedPersonId, true, this);
+                selectedPersonId = null;
                 personForm.Show();
             }
         }
@@ -103,6 +110,7 @@ namespace Neo
         {
             // Här ska vi visa ett tomt PersonForm 
             PersonForm personForm = new PersonForm(selectedPersonId, false, this);
+            selectedPersonId = null;
             personForm.Show();
         }
 
@@ -156,6 +164,11 @@ namespace Neo
                 // Här ska vi visa fönstret som visar detaljerad information om barnets
                 //
             }
+        }
+
+        private void ManageForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            homeWindow.PerformRefresh();
         }
     }
 }

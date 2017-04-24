@@ -52,7 +52,11 @@ namespace Neo
                     mother_lastname.Text = dr["mother_last_name"].ToString();
                     comments.Text = dr["comments"].ToString();
 
-                    
+                    if(dr["status"].ToString() != "")
+                    {
+                        statusBox.SelectedIndex = int.Parse(dr["status"].ToString());
+                    }
+
                     // Konvertera och visa datum
                     string[] date = funcObject.splitDate(dr["planned_birthday"].ToString());
                     birthdayPicker.Value = new DateTime(int.Parse(date[0]), int.Parse(date[1]), int.Parse(date[2]));
@@ -99,7 +103,7 @@ namespace Neo
 
                     // Stäng fönsret
                     Close();
-                } 
+                }
                 else
                 {
                     MessageBox.Show("Du måste fylla minst fylla i barnets för och efternamn");
@@ -111,7 +115,7 @@ namespace Neo
         {
             // Tolk variabeln
             string interpreterValue = getInterpreterValue();
-            
+
             // Redigera data
             string sqlQuery = "UPDATE Children SET first_name = '" + child_firstname.Text
                 + "', last_name = '" + child_lastname.Text
@@ -120,6 +124,7 @@ namespace Neo
                 + "', planned_birthday='" + birthdayPicker.Value.ToShortDateString().ToString()
                 + "', interpreter='" + interpreterValue.ToString()
                 + "', comments='" + comments.Text.ToString()
+                + "', status='" + statusBox.SelectedIndex.ToString()
                 + "' WHERE person_id = '" + selectedPersonId + "'; ";
 
             // Executaaaaa
@@ -131,8 +136,8 @@ namespace Neo
             string interpreterValue = getInterpreterValue();
 
             // Skapa
-            string sqlQuery = "INSERT INTO Children (person_id, first_name, last_name, mother_first_name, mother_last_name, planned_birthday, interpreter, comments)" 
-                            + "VALUES('"+person_id.Text+"', '"+child_firstname.Text+"', '"+child_lastname.Text+"', '"+mother_firstname.Text+"', '"+mother_lastname.Text+"', '"+birthdayPicker.Value.ToShortDateString()+"', '"+interpreterValue+"', '"+comments.Text+"')";
+            string sqlQuery = "INSERT INTO Children (person_id, first_name, last_name, mother_first_name, mother_last_name, planned_birthday, interpreter, comments, status)" 
+                            + "VALUES('"+person_id.Text+"', '"+child_firstname.Text+"', '"+child_lastname.Text+"', '"+mother_firstname.Text+"', '"+mother_lastname.Text+"', '"+birthdayPicker.Value.ToShortDateString()+"', '"+interpreterValue+"', '"+comments.Text+"', '"+ statusBox.SelectedIndex.ToString() +"')";
 
             // Executaaaaa
             dbOject.iuQuery(sqlQuery);

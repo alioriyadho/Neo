@@ -32,6 +32,8 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.DeleteChild = new System.Windows.Forms.ToolStripButton();
             this.listView1 = new System.Windows.Forms.ListView();
             this.personId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.firstnameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -40,8 +42,6 @@
             this.plannedDateCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.interpeterCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.DeleteChild = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,6 +76,25 @@
             this.toolStripButton2.Text = "Ändra uppgifter";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(114, 22);
+            this.toolStripButton4.Text = "Mer information";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // DeleteChild
+            // 
+            this.DeleteChild.Image = ((System.Drawing.Image)(resources.GetObject("DeleteChild.Image")));
+            this.DeleteChild.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteChild.Name = "DeleteChild";
+            this.DeleteChild.Size = new System.Drawing.Size(64, 22);
+            this.DeleteChild.Text = "Ta bort";
+            this.DeleteChild.ToolTipText = "Ta bort ";
+            this.DeleteChild.Click += new System.EventHandler(this.DeleteChild_Click);
+            // 
             // listView1
             // 
             this.listView1.AllowColumnReorder = true;
@@ -106,26 +125,31 @@
             // 
             // firstnameCol
             // 
+            this.firstnameCol.DisplayIndex = 1;
             this.firstnameCol.Text = "Förnamn";
             this.firstnameCol.Width = 119;
             // 
             // lastnameCol
             // 
+            this.lastnameCol.DisplayIndex = 2;
             this.lastnameCol.Text = "Efternamn";
             this.lastnameCol.Width = 114;
             // 
             // motherCol
             // 
+            this.motherCol.DisplayIndex = 3;
             this.motherCol.Text = "Mor";
             this.motherCol.Width = 111;
             // 
             // plannedDateCol
             // 
+            this.plannedDateCol.DisplayIndex = 4;
             this.plannedDateCol.Text = "Planerad födsel";
             this.plannedDateCol.Width = 118;
             // 
             // interpeterCol
             // 
+            this.interpeterCol.DisplayIndex = 5;
             this.interpeterCol.Text = "Tolk";
             this.interpeterCol.Width = 96;
             // 
@@ -136,25 +160,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(687, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(114, 22);
-            this.toolStripButton4.Text = "Mer information";
-            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
-            // 
-            // DeleteChild
-            // 
-            this.DeleteChild.Image = ((System.Drawing.Image)(resources.GetObject("DeleteChild.Image")));
-            this.DeleteChild.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DeleteChild.Name = "DeleteChild";
-            this.DeleteChild.Size = new System.Drawing.Size(64, 22);
-            this.DeleteChild.Text = "Ta bort";
-            this.DeleteChild.ToolTipText = "Ta bort ";
-            this.DeleteChild.Click += new System.EventHandler(this.DeleteChild_Click);
             // 
             // Manage
             // 

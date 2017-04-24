@@ -44,8 +44,10 @@
             this.birthdayPicker = new System.Windows.Forms.DateTimePicker();
             this.child_firstname = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.child_lastname = new System.Windows.Forms.TextBox();
             this.savebutton = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.child_lastname = new System.Windows.Forms.TextBox();
+            this.statusBox = new System.Windows.Forms.ComboBox();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -54,7 +56,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.comments);
-            this.groupBox3.Location = new System.Drawing.Point(12, 250);
+            this.groupBox3.Location = new System.Drawing.Point(12, 272);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(334, 128);
             this.groupBox3.TabIndex = 20;
@@ -77,7 +79,7 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.interpreter);
             this.groupBox2.Controls.Add(this.mother_lastname);
-            this.groupBox2.Location = new System.Drawing.Point(12, 149);
+            this.groupBox2.Location = new System.Drawing.Point(12, 171);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(334, 95);
             this.groupBox2.TabIndex = 19;
@@ -128,6 +130,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.statusBox);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.person_id);
@@ -139,7 +143,7 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(334, 131);
+            this.groupBox1.Size = new System.Drawing.Size(334, 155);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Barnet";
@@ -208,16 +212,9 @@
             this.label3.Text = "Efternamn";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // child_lastname
-            // 
-            this.child_lastname.Location = new System.Drawing.Point(121, 71);
-            this.child_lastname.Name = "child_lastname";
-            this.child_lastname.Size = new System.Drawing.Size(197, 20);
-            this.child_lastname.TabIndex = 7;
-            // 
             // savebutton
             // 
-            this.savebutton.Location = new System.Drawing.Point(12, 385);
+            this.savebutton.Location = new System.Drawing.Point(12, 407);
             this.savebutton.Name = "savebutton";
             this.savebutton.Size = new System.Drawing.Size(333, 34);
             this.savebutton.TabIndex = 21;
@@ -225,11 +222,44 @@
             this.savebutton.UseVisualStyleBackColor = true;
             this.savebutton.Click += new System.EventHandler(this.savebutton_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(69, 127);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(37, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Status";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // child_lastname
+            // 
+            this.child_lastname.Location = new System.Drawing.Point(121, 71);
+            this.child_lastname.Name = "child_lastname";
+            this.child_lastname.Size = new System.Drawing.Size(197, 20);
+            this.child_lastname.TabIndex = 7;
+            // 
+            // statusBox
+            // 
+            this.statusBox.FormattingEnabled = true;
+            this.statusBox.Items.AddRange(new object[] {
+            "5-6 Mån kontroll",
+            "10-12 Mån kontroll",
+            "18-20 Mån kontroll",
+            "2 års kontroll",
+            "5 års kontroll",
+            "Klar"});
+            this.statusBox.Location = new System.Drawing.Point(121, 124);
+            this.statusBox.Name = "statusBox";
+            this.statusBox.Size = new System.Drawing.Size(197, 21);
+            this.statusBox.TabIndex = 15;
+            // 
             // PersonForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 432);
+            this.ClientSize = new System.Drawing.Size(360, 453);
             this.Controls.Add(this.savebutton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -265,7 +295,9 @@
         private System.Windows.Forms.DateTimePicker birthdayPicker;
         private System.Windows.Forms.TextBox child_firstname;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox child_lastname;
         private System.Windows.Forms.Button savebutton;
+        private System.Windows.Forms.ComboBox statusBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox child_lastname;
     }
 }
