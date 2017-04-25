@@ -43,7 +43,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.timeLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -86,15 +85,16 @@
             // 
             // notificationsLabel
             // 
-            this.notificationsLabel.AutoSize = true;
+            this.notificationsLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.notificationsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notificationsLabel.ForeColor = System.Drawing.Color.White;
-            this.notificationsLabel.Location = new System.Drawing.Point(46, 29);
+            this.notificationsLabel.Location = new System.Drawing.Point(0, 0);
             this.notificationsLabel.Name = "notificationsLabel";
-            this.notificationsLabel.Size = new System.Drawing.Size(68, 73);
+            this.notificationsLabel.Size = new System.Drawing.Size(160, 127);
             this.notificationsLabel.TabIndex = 6;
             this.notificationsLabel.Text = "0";
             this.notificationsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.notificationsLabel.Click += new System.EventHandler(this.notificationsLabel_Click);
             // 
             // panel1
             // 
@@ -119,15 +119,16 @@
             // 
             // callingslabel
             // 
-            this.callingslabel.AutoSize = true;
+            this.callingslabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.callingslabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.callingslabel.ForeColor = System.Drawing.Color.White;
-            this.callingslabel.Location = new System.Drawing.Point(28, 29);
+            this.callingslabel.Location = new System.Drawing.Point(0, 0);
             this.callingslabel.Name = "callingslabel";
-            this.callingslabel.Size = new System.Drawing.Size(104, 73);
+            this.callingslabel.Size = new System.Drawing.Size(160, 127);
             this.callingslabel.TabIndex = 0;
             this.callingslabel.Text = "17";
             this.callingslabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.callingslabel.Click += new System.EventHandler(this.callingslabel_Click);
             // 
             // panel3
             // 
@@ -152,12 +153,12 @@
             // 
             // physiotherapistLabel
             // 
-            this.physiotherapistLabel.AutoSize = true;
+            this.physiotherapistLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.physiotherapistLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.physiotherapistLabel.ForeColor = System.Drawing.Color.White;
-            this.physiotherapistLabel.Location = new System.Drawing.Point(9, 29);
+            this.physiotherapistLabel.Location = new System.Drawing.Point(0, 0);
             this.physiotherapistLabel.Name = "physiotherapistLabel";
-            this.physiotherapistLabel.Size = new System.Drawing.Size(140, 73);
+            this.physiotherapistLabel.Size = new System.Drawing.Size(160, 127);
             this.physiotherapistLabel.TabIndex = 4;
             this.physiotherapistLabel.Text = "255";
             this.physiotherapistLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -185,15 +186,16 @@
             // 
             // timeLabel
             // 
-            this.timeLabel.AutoSize = true;
+            this.timeLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeLabel.ForeColor = System.Drawing.Color.White;
-            this.timeLabel.Location = new System.Drawing.Point(11, 29);
+            this.timeLabel.Location = new System.Drawing.Point(0, 0);
             this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(140, 73);
+            this.timeLabel.Size = new System.Drawing.Size(160, 127);
             this.timeLabel.TabIndex = 2;
             this.timeLabel.Text = "510";
             this.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.timeLabel.Click += new System.EventHandler(this.timeLabel_Click);
             // 
             // button1
             // 
@@ -208,24 +210,11 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.OrangeRed;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(44, 110);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(204, 67);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Lägg till ett barn";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
             // NeoHomePage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(687, 390);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -254,7 +243,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label notificationsLabel;
         private System.Windows.Forms.Label label2;
