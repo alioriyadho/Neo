@@ -1,19 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C9E1F1E4-0F08-4904-822F-DC1F07BF661A}</ProjectGuid>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{82B4CEF2-D847-42A2-9227-E3C6407FB236}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Neo</RootNamespace>
-    <AssemblyName>Neo</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>WindowsApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>H:\Neonatalvården\TestPublish\</PublishUrl>
+    <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,15 +19,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
-    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -39,46 +33,51 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestCertificateThumbprint>D4CBA73F20074EC53F212ADCFD5769BED9428435</ManifestCertificateThumbprint>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestKeyFile>Neo_TemporaryKey.pfx</ManifestKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <RootNamespace>Neo</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitattributes" />
+    <Content Include=".gitignore" />
+    <Content Include=".git\ms-persist.xml" />
+    <Content Include="db.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="db_log.ldf">
+      <DependentUpon>db.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DbManager.cs" />
+    <Compile Include="functions.cs" />
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,71 +92,180 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="Properties\Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Add.resx">
       <DependentUpon>Add.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <None Include="Neo_TemporaryKey.pfx" />
+    <EmbeddedResource Include="Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".git\COMMIT_EDITMSG" />
+    <None Include=".git\config" />
+    <None Include=".git\description" />
+    <None Include=".git\FETCH_HEAD" />
+    <None Include=".git\HEAD" />
+    <None Include=".git\hooks\applypatch-msg.sample" />
+    <None Include=".git\hooks\commit-msg.sample" />
+    <None Include=".git\hooks\post-update.sample" />
+    <None Include=".git\hooks\pre-applypatch.sample" />
+    <None Include=".git\hooks\pre-commit.sample" />
+    <None Include=".git\hooks\pre-push.sample" />
+    <None Include=".git\hooks\pre-rebase.sample" />
+    <None Include=".git\hooks\pre-receive.sample" />
+    <None Include=".git\hooks\prepare-commit-msg.sample" />
+    <None Include=".git\hooks\update.sample" />
+    <None Include=".git\index" />
+    <None Include=".git\info\exclude" />
+    <None Include=".git\logs\HEAD" />
+    <None Include=".git\logs\refs\heads\ali" />
+    <None Include=".git\logs\refs\heads\freddan" />
+    <None Include=".git\logs\refs\heads\master" />
+    <None Include=".git\logs\refs\remotes\origin\ali" />
+    <None Include=".git\logs\refs\remotes\origin\freddan" />
+    <None Include=".git\logs\refs\remotes\origin\HEAD" />
+    <None Include=".git\logs\refs\remotes\origin\master" />
+    <None Include=".git\objects\01\1f375c513113fa7dad21f4c696714d4310db7e" />
+    <None Include=".git\objects\03\2b1b1b17c514f2ca163be17bd8bdc4a649da38" />
+    <None Include=".git\objects\06\1dcfff76f8efa45244af0a33a41bf17e86dbf7" />
+    <None Include=".git\objects\06\cfa345f6aacec9dbdc3fc46ead7be76258e10c" />
+    <None Include=".git\objects\0d\b7d62c951c164c33c102e24ec8e5a117716ded" />
+    <None Include=".git\objects\0e\6cb33bcfa359599497115f5dc8cdb47d39029e" />
+    <None Include=".git\objects\11\9ff2c7ed25cab8b026d8b74b5314efa889e583" />
+    <None Include=".git\objects\14\f7034542b5df94c426f9a929f43b916f9bdbfc" />
+    <None Include=".git\objects\16\2c727c51301761cdec6fad111c676892b5f805" />
+    <None Include=".git\objects\18\6c3fa9d8d84a8a2d7cd908e6fe0af3cfc36009" />
+    <None Include=".git\objects\19\2d479c4099444cb793db7224e0cf6e12f8dccb" />
+    <None Include=".git\objects\1a\f7de150c99c12dd67a509fe57c10d63e4eeb04" />
+    <None Include=".git\objects\1c\39790fbb7f69808b76ba1a4ab01dee0e3f87b9" />
+    <None Include=".git\objects\20\49f80ae248b60233a87fc206ab4ba9f6c333ae" />
+    <None Include=".git\objects\25\0db144cc939886018b7e573bf009dcf80862ca" />
+    <None Include=".git\objects\26\aadae54c99e32ac81066c07c8805fe3543b082" />
+    <None Include=".git\objects\2b\f8d48d43f68144f158edc2da2b89f0858e010f" />
+    <None Include=".git\objects\2d\6e9a24f3cc8879806a21ee9ad7737fb6574028" />
+    <None Include=".git\objects\31\86fa7a69e29bab7a24632f7d54a87cdb927e0c" />
+    <None Include=".git\objects\32\380c36ac47fb336d4594f8eee3f283b3b6746c" />
+    <None Include=".git\objects\35\a3d4ccf9878039380b102d18b4df044e7f15e8" />
+    <None Include=".git\objects\39\645652af62950ebf3b28ec3a5400dcec30b1c4" />
+    <None Include=".git\objects\3a\f71947bb8db7f4c98dbad8c5441da6b54452ba" />
+    <None Include=".git\objects\3d\f403a374bff2185ec043bcb8bed3b2ab8facbe" />
+    <None Include=".git\objects\3e\a0ca704704b805bfcabe5726335610c7d676e0" />
+    <None Include=".git\objects\40\47ebe698c273f2673f7454a4a224f7ab6e74fe" />
+    <None Include=".git\objects\40\4f029eec61d0f1281969aa381ae02225fbe326" />
+    <None Include=".git\objects\41\7ed630725e68c18e9dd92a12d9f8c78c9b2bec" />
+    <None Include=".git\objects\44\2a1d31fc173d3295bc4dc13813e2825d909658" />
+    <None Include=".git\objects\47\9797a675c63b0a52878e0790a4b107bee922ee" />
+    <None Include=".git\objects\49\f18f22b3bdeff2855581071fd8f3d82cf36272" />
+    <None Include=".git\objects\4d\f086b1b8cad53ded37d3fafc9b1e92eba7155b" />
+    <None Include=".git\objects\54\64ab347b5adc3f756a86287a9640d11a598d4e" />
+    <None Include=".git\objects\58\e49310b89d36bf78fd2bc07fdd38e4696cb89c" />
+    <None Include=".git\objects\5a\6053c583b6609c53e8f9f71dd8e6f9ad69c4f8" />
+    <None Include=".git\objects\5c\9bd955f0fa8cffa46ce5a0bc55d196f38e5f0f" />
+    <None Include=".git\objects\60\b14c3bc3270e00ef758d33940734018cdf28bc" />
+    <None Include=".git\objects\60\e359a43b03bb5bedf5d641fd267c79e6968868" />
+    <None Include=".git\objects\62\6cb7d7fd63a4dcaae8248f055251c06d08e1e1" />
+    <None Include=".git\objects\6c\4ca2b0caf66127042b56ace83e4b061772e9d4" />
+    <None Include=".git\objects\6e\46f5f621e1f6c54cc4927e3c663a4972671930" />
+    <None Include=".git\objects\74\49454a8482e1f0c587f7c34737f0dbdf2f08b0" />
+    <None Include=".git\objects\7b\d4c7cb670a3f3d1fe033d8a2070891460568a3" />
+    <None Include=".git\objects\7f\ecce552d36b1946ef044aa89065872faf6eb43" />
+    <None Include=".git\objects\80\62a6e5986c0cfb56478a81591e9dca1f51a31c" />
+    <None Include=".git\objects\80\80233a2249e62841da8a494f65d07ebb10f9f9" />
+    <None Include=".git\objects\88\fa4027bda397de6bf19f0940e5dd6026c877f9" />
+    <None Include=".git\objects\90\e9a63b7492e26efafc016ec15ad28ac3ee7380" />
+    <None Include=".git\objects\91\549ce340c8b1590678fc2ad44532ea2e0625ae" />
+    <None Include=".git\objects\91\88ba935bd96e6fe0ead662f5aed0e469574bce" />
+    <None Include=".git\objects\94\ca601fe54b9ae20c2f5bf12386217fc726483d" />
+    <None Include=".git\objects\95\4ab0f7c1b5c5942d3d214be5721e4ba21a3c79" />
+    <None Include=".git\objects\98\1b314e786ec12b999219c6d4ed5b0e8981925a" />
+    <None Include=".git\objects\99\04cc5b156c56045553739af21cb3dd6ba20c25" />
+    <None Include=".git\objects\99\593a3eeb0dd9cc8e73a1a521921b380dca377a" />
+    <None Include=".git\objects\99\be7d281aec1486050da6db10a8cbbea1643a55" />
+    <None Include=".git\objects\9c\f059f366559c645e422016079ebc4ef0c8e92a" />
+    <None Include=".git\objects\a0\242a20812d765c3cbdce1109c3f64481df9a11" />
+    <None Include=".git\objects\a2\5ce2551ee89c4c4338838fa54ebe0b6ff53405" />
+    <None Include=".git\objects\a6\f2ed0091b6c26487eec366bee1e0cc6b5eed6d" />
+    <None Include=".git\objects\a8\69c1d85c398be63fa348f98207fae3599a9820" />
+    <None Include=".git\objects\a8\f715a77f351c7f44e24a6f5efe170858a7e507" />
+    <None Include=".git\objects\a9\3a4fd25496f064e1a8f8f15fd60f4bccd5339e" />
+    <None Include=".git\objects\ab\fd2a23b6f6f4a3bb363ed3169b462bcc70268e" />
+    <None Include=".git\objects\ab\fe188ce744c00c2448b20777017d85dfe84929" />
+    <None Include=".git\objects\ac\2d40b1c04dfef4fc05c8abdbcddc0949a6e330" />
+    <None Include=".git\objects\ac\d46d0c263e06736bf039d60c0b9b940acdc237" />
+    <None Include=".git\objects\ae\16a271e5d37fe84d4b28dcf84e5f4224bbb726" />
+    <None Include=".git\objects\af\7dbebbacef595e3089c01c05671016c21a8304" />
+    <None Include=".git\objects\b1\c2c4267e976d64481b1fb467c17b2c16946e50" />
+    <None Include=".git\objects\b5\79ad15b3454b7a656fcbaa9075f2ce0fedf941" />
+    <None Include=".git\objects\b7\f370416bf7fc5b3e02f4795af8036e5b65617b" />
+    <None Include=".git\objects\b9\12f8e42e2ec3fe360d7dfaf232a2052cc1f050" />
+    <None Include=".git\objects\ba\122105a61005f83735c5a44dceba4c35f7bc65" />
+    <None Include=".git\objects\ba\80abed0a2e160d1d4650154408cceef7e2d940" />
+    <None Include=".git\objects\bb\1f198f7a81c48577e6524a3bc16ac28320a723" />
+    <None Include=".git\objects\bc\09329480dc734997c5056921173401c39d9526" />
+    <None Include=".git\objects\bd\b0cabc87cf50106df6e15097dff816c8c3eb34" />
+    <None Include=".git\objects\c0\22aeb46de95462cb44c583cf5e1b224dddd658" />
+    <None Include=".git\objects\c0\78a29595e47c2b29901285be3433aca5c4bc0f" />
+    <None Include=".git\objects\c4\4ddb904560a319a012242975145645eda9eb1c" />
+    <None Include=".git\objects\d0\e689da0ee776e636d14e820a4b112437bfc166" />
+    <None Include=".git\objects\d3\392be44ff181c8f1ff43fd9b968793302e09d5" />
+    <None Include=".git\objects\d6\1c761b9aeffa397dffce2f8bce875bb6841cda" />
+    <None Include=".git\objects\d7\40602a80e8a6c090ec52f608aa7f05921875b7" />
+    <None Include=".git\objects\d9\7f63bb418ed1304678fd3b01002d859b23b375" />
+    <None Include=".git\objects\dd\6726f9559e6484bda12d74301616f77a5fd782" />
+    <None Include=".git\objects\de\b946fa5f64637d7259fad7dcf2b303c224ec5e" />
+    <None Include=".git\objects\df\53656074758e328692fbd8c8def6b7023285f9" />
+    <None Include=".git\objects\e2\7abe5955f72c1a04165fa32c1aedf8ac17128f" />
+    <None Include=".git\objects\e5\96f1b0cfc5013863ffe1b1d3204b110f57559c" />
+    <None Include=".git\objects\e8\00196009c828c7beccca0ca82f118212b30340" />
+    <None Include=".git\objects\ea\88e944161175bdbf811a15ff15be903a34b490" />
+    <None Include=".git\objects\ed\82875b23bc7ae4428584c02602818c0b599de0" />
+    <None Include=".git\objects\f3\725e2a0a9a06b9d6cb979ec484ede1ab474aff" />
+    <None Include=".git\objects\fd\16764016fe249afebe32a3a4b23af726c0d1d6" />
+    <None Include=".git\objects\fd\afb5b833e97baa39faafd0adfd1e5fe2f8974d" />
+    <None Include=".git\objects\ff\e5e4f4c8946bdf5f5ba8b36e661a734cd928a4" />
+    <None Include=".git\ORIG_HEAD" />
+    <None Include=".git\packed-refs" />
+    <None Include=".git\refs\heads\ali" />
+    <None Include=".git\refs\heads\freddan" />
+    <None Include=".git\refs\heads\master" />
+    <None Include=".git\refs\remotes\origin\ali" />
+    <None Include=".git\refs\remotes\origin\freddan" />
+    <None Include=".git\refs\remotes\origin\HEAD" />
+    <None Include=".git\refs\remotes\origin\master" />
+    <None Include=".vs\config\applicationhost.config" />
+    <None Include=".vs\Neo\v15\.suo" />
+    <None Include=".vs\slnx.sqlite" />
+    <None Include=".vs\VSWorkspaceState.json" />
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Folder Include=".git\objects\info\" />
+    <Folder Include=".git\objects\pack\" />
+    <Folder Include=".git\refs\tags\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="db.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="db_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>db.mdf</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.SqlServer.SqlLocalDB.11.1">
-      <Visible>False</Visible>
-      <ProductName>SQL Server 2012 Express LocalDB</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
 </Project>
