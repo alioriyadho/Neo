@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PersonForm));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comments = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -37,6 +38,8 @@
             this.interpreter = new System.Windows.Forms.CheckBox();
             this.mother_lastname = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.statusBox = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.person_id = new System.Windows.Forms.TextBox();
@@ -44,10 +47,8 @@
             this.birthdayPicker = new System.Windows.Forms.DateTimePicker();
             this.child_firstname = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.savebutton = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
             this.child_lastname = new System.Windows.Forms.TextBox();
-            this.statusBox = new System.Windows.Forms.ComboBox();
+            this.savebutton = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -148,6 +149,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Barnet";
             // 
+            // statusBox
+            // 
+            this.statusBox.FormattingEnabled = true;
+            this.statusBox.Items.AddRange(new object[] {
+            "5-6 Mån kontroll",
+            "10-12 Mån kontroll",
+            "18-20 Mån kontroll",
+            "2 års kontroll",
+            "5 års kontroll",
+            "Klar"});
+            this.statusBox.Location = new System.Drawing.Point(121, 124);
+            this.statusBox.Name = "statusBox";
+            this.statusBox.Size = new System.Drawing.Size(197, 21);
+            this.statusBox.TabIndex = 15;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(69, 127);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(37, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Status";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -212,6 +239,13 @@
             this.label3.Text = "Efternamn";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // child_lastname
+            // 
+            this.child_lastname.Location = new System.Drawing.Point(121, 71);
+            this.child_lastname.Name = "child_lastname";
+            this.child_lastname.Size = new System.Drawing.Size(197, 20);
+            this.child_lastname.TabIndex = 7;
+            // 
             // savebutton
             // 
             this.savebutton.Location = new System.Drawing.Point(12, 407);
@@ -221,39 +255,6 @@
             this.savebutton.Text = "Spara";
             this.savebutton.UseVisualStyleBackColor = true;
             this.savebutton.Click += new System.EventHandler(this.savebutton_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(69, 127);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(37, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Status";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // child_lastname
-            // 
-            this.child_lastname.Location = new System.Drawing.Point(121, 71);
-            this.child_lastname.Name = "child_lastname";
-            this.child_lastname.Size = new System.Drawing.Size(197, 20);
-            this.child_lastname.TabIndex = 7;
-            // 
-            // statusBox
-            // 
-            this.statusBox.FormattingEnabled = true;
-            this.statusBox.Items.AddRange(new object[] {
-            "5-6 Mån kontroll",
-            "10-12 Mån kontroll",
-            "18-20 Mån kontroll",
-            "2 års kontroll",
-            "5 års kontroll",
-            "Klar"});
-            this.statusBox.Location = new System.Drawing.Point(121, 124);
-            this.statusBox.Name = "statusBox";
-            this.statusBox.Size = new System.Drawing.Size(197, 21);
-            this.statusBox.TabIndex = 15;
             // 
             // PersonForm
             // 
@@ -265,6 +266,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PersonForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PersonForm";

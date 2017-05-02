@@ -8,7 +8,7 @@ namespace Neo
 {
     public class functions
     {
-        public string getDateByStartDatePlusInterval(string startDate, int interval)
+        public string getDateByStartDatePlusInterval(string startDate, int interval, string format)
         {
             DateTime time = DateTime.Parse(startDate);
             Console.WriteLine(time);
@@ -16,7 +16,7 @@ namespace Neo
             // Räkna ut nya datumet
             DateTime MyNewDateValue = time.AddDays(interval);
 
-            return MyNewDateValue.ToString();
+            return String.Format("{0:"+ format + "}", MyNewDateValue);
         }
 
         public string[] splitDate(string strDate)

@@ -157,12 +157,12 @@ namespace Neo
                 functions funcObject = new functions();
 
                 MessageBox.Show(childDr["first_name"].ToString() + " " + childDr["last_name"].ToString()
-                    + "\n\n2 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 61)
-                    + "\n6 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 186)
-                    + "\n12 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 365), "Detaljer");
-                //
-                // Här ska vi visa fönstret som visar detaljerad information om barnets
-                //
+                    + "\n\n2 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 61, "yyyy-MM-dd")
+                    + "\n5-6 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 183, "yyyy-MM-dd")
+                    + "\n10-12 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 365, "yyyy-MM-dd")
+                    + "\n18-20 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 610, "yyyy-MM-dd")
+                    + "\n2 år: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 730, "yyyy-MM-dd")
+                    + "\n5 år: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 2013, "yyyy-MM-dd"), "Detaljer");
             }
         }
 

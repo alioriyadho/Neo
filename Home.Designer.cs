@@ -43,6 +43,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.timeLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.fromDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.toDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.filterButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -210,14 +215,69 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // fromDatePicker
+            // 
+            this.fromDatePicker.Location = new System.Drawing.Point(289, 170);
+            this.fromDatePicker.Name = "fromDatePicker";
+            this.fromDatePicker.Size = new System.Drawing.Size(137, 20);
+            this.fromDatePicker.TabIndex = 7;
+            // 
+            // toDatePicker
+            // 
+            this.toDatePicker.Location = new System.Drawing.Point(462, 171);
+            this.toDatePicker.Name = "toDatePicker";
+            this.toDatePicker.Size = new System.Drawing.Size(137, 20);
+            this.toDatePicker.TabIndex = 8;
+            // 
+            // filterButton
+            // 
+            this.filterButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.filterButton.Location = new System.Drawing.Point(604, 169);
+            this.filterButton.Name = "filterButton";
+            this.filterButton.Size = new System.Drawing.Size(67, 23);
+            this.filterButton.TabIndex = 9;
+            this.filterButton.Text = "Filtrera";
+            this.filterButton.UseVisualStyleBackColor = false;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(242, 171);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Från";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(432, 171);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(27, 20);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Till";
+            // 
             // NeoHomePage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(687, 390);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.filterButton);
+            this.Controls.Add(this.toDatePicker);
+            this.Controls.Add(this.fromDatePicker);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "NeoHomePage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -232,6 +292,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -251,5 +312,10 @@
         private System.Windows.Forms.Label physiotherapistLabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label timeLabel;
+        private System.Windows.Forms.DateTimePicker fromDatePicker;
+        private System.Windows.Forms.DateTimePicker toDatePicker;
+        private System.Windows.Forms.Button filterButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
     }
 }

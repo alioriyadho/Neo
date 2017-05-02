@@ -25,13 +25,21 @@ namespace Neo
         public int physiotherapist = 0;
         public int psychologist = 0;
         public int notifications = 0;
-        public int interval = 35;
+        public int interval = -35;
+        string dateNow;
 
         public NeoHomePage()
         {
             InitializeComponent();
 
-            //
+            // Dagens datum
+            dateNow = DateTime.Now.ToString("yyyy-M-dd HH:mm");
+
+            // Datum -35
+            string[] date = funcObject.splitDate(funcObject.getDateByStartDatePlusInterval(dateNow, interval, "yyyy-MM-dd"));
+            fromDatePicker.Value = new DateTime(int.Parse(date[0]), int.Parse(date[1]), int.Parse(date[2]));
+
+            // Räkna ut 
             countCallings();
         }
 
@@ -50,8 +58,8 @@ namespace Neo
                     status = int.Parse(dr["status"].ToString());
                 }
 
-                int countInterval = funcObject.countDays(dr["planned_birthday"].ToString(), DateTime.Now.ToString("yyyy-MM-dd"));
-                if (countInterval > 0 && countInterval <= interval)
+                int countInterval = (funcObject.countDays(dr["planned_birthday"].ToString(), DateTime.Now.ToString("yyyy-MM-dd")) * -1);
+                if (countInterval < 0 && countInterval >= interval)
                 {
                     if (status == 0 || status <= 2)
                     {
@@ -95,13 +103,18 @@ namespace Neo
         public void PerformRefresh()
         {
             Console.WriteLine("UPDATE");
+            resetValues();
+            countCallings();
+        }
+
+        public void resetValues()
+        {
             callings = 0;
             doctor = 0;
             time = 0;
             physiotherapist = 0;
             psychologist = 0;
             notifications = 0;
-            countCallings();
         }
 
         private void timeLabel_Click(object sender, EventArgs e)
@@ -111,19 +124,34 @@ namespace Neo
                                 + "\nPsykolog: " + psychologist, "Detaljerade tider (Minuter)");
         }
 
+        // Den gula rutan
         private void notificationsLabel_Click(object sender, EventArgs e)
         {
-            string dateNow = DateTime.Now.ToString("yyyy-M-dd HH:mm");
-            Manage ManageForm = new Manage("select * from Children WHERE status != 5 AND planned_birthday < '" + dateNow + "'", this);
+            Manage ManageForm = new Manage("select * from Children WHERE status != 5 AND  DATEDIFF(day, '" + dateNow + "', planned_birthday)  < '" + interval+"'", this);
             ManageForm.Show();
         }
 
+        // Den blåa rutan
         private void callingslabel_Click(object sender, EventArgs e)
         {
-            string dateNow = DateTime.Now.ToString("yyyy-M-dd HH:mm");
-            string calcDate = funcObject.getDateByStartDatePlusInterval(dateNow, interval);
-            Manage ManageForm = new Manage("select * from Children WHERE planned_birthday BETWEEN '" + dateNow + "' AND '" + calcDate + "'", this);
+            string calcDate = funcObject.getDateByStartDatePlusInterval(dateNow, interval, "yyyy-MM-dd");
+            Manage ManageForm = new Manage("select * from Children WHERE planned_birthday BETWEEN '" + calcDate + "' AND '" + dateNow + "'", this);
             ManageForm.Show();
+        }
+
+        private void filterButton_Click(object sender, EventArgs e)
+        {
+            string to = fromDatePicker.Value.ToShortDateString().ToString();
+            dateNow = toDatePicker.Value.ToShortDateString().ToString();
+
+            // Räkna ut intervallen
+            interval = funcObject.countDays(dateNow, to);
+
+            // Återställ
+            resetValues();
+            
+            // Uppdatera
+            countCallings();
         }
     }
 }

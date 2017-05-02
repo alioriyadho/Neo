@@ -125,31 +125,26 @@
             // 
             // firstnameCol
             // 
-            this.firstnameCol.DisplayIndex = 1;
             this.firstnameCol.Text = "Förnamn";
             this.firstnameCol.Width = 119;
             // 
             // lastnameCol
             // 
-            this.lastnameCol.DisplayIndex = 2;
             this.lastnameCol.Text = "Efternamn";
             this.lastnameCol.Width = 114;
             // 
             // motherCol
             // 
-            this.motherCol.DisplayIndex = 3;
             this.motherCol.Text = "Mor";
             this.motherCol.Width = 111;
             // 
             // plannedDateCol
             // 
-            this.plannedDateCol.DisplayIndex = 4;
             this.plannedDateCol.Text = "Planerad födsel";
             this.plannedDateCol.Width = 118;
             // 
             // interpeterCol
             // 
-            this.interpeterCol.DisplayIndex = 5;
             this.interpeterCol.Text = "Tolk";
             this.interpeterCol.Width = 96;
             // 
@@ -170,6 +165,7 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Manage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage";
