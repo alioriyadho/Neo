@@ -11,10 +11,8 @@ namespace Neo
 {
     public class DbManager
     {
-        public DataTable executeDbQuery(String sql)
+        public string checkDb()
         {
-            var dt = new DataTable();
-
             // Sökvägen till mappen dokument
             String path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Neo";
 
@@ -26,6 +24,16 @@ namespace Neo
             {
                 File.WriteAllBytes(path + "\\db.mdf", Properties.Resources.db);
             }
+
+            return path;
+        }
+
+        public DataTable executeDbQuery(String sql)
+        {
+            var dt = new DataTable();
+
+            // Sökvägen till mappen dokument
+            String path = checkDb();
 
             // Öppna en koppling till DB 
             using (var cn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + path + "\\db.mdf;Integrated Security=True"))
@@ -43,6 +51,25 @@ namespace Neo
 
             // Skicka tillbaka objektet
             return dt;
+        }
+
+        public void iuQuery(string sqlQuery)
+        {
+            // Hämta sökvägen till db
+            String path = checkDb();
+
+            // Slapa en connection
+            System.Data.SqlClient.SqlConnection sqlConnection1 = new System.Data.SqlClient.SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + path + "\\db.mdf;Integrated Security=True");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            // Kör frågan
+            cmd.CommandText = sqlQuery;
+            cmd.Connection = sqlConnection1;
+
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
         }
     }
 }

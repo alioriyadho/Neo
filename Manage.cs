@@ -15,18 +15,25 @@ namespace Neo
     {
         private string sqlQuery;
         private string selectedPersonId;
+        private functions funcObject;
+        private NeoHomePage homeWindow;
 
         // Skapa ett objekt för klassen
         DbManager dbOject = new DbManager();
 
-        public Manage(string sqlQueryIn)
+        public Manage(string sqlQueryIn, NeoHomePage homeIn)
         {
             InitializeComponent();
 
+            homeWindow = homeIn;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageForm_FormClosing);
+
             // lagra frågan i variabel
             sqlQuery = sqlQueryIn;
+            funcObject = new functions();
 
-            MessageBox.Show(sqlQuery);
+            // 
+            this.Text = "Hantera";
 
             // Fyll i listvyn
             getDataFromDb();
@@ -84,31 +91,6 @@ namespace Neo
             }
         }
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            if(selectedPersonId == null)
-            {
-                MessageBox.Show("Välj först ett barn från listan nedan.", "Fel");
-            }
-            else
-            {
-                // Hämta detaljer info från DB
-                var child = dbOject.executeDbQuery("select * from Children where person_id = " + selectedPersonId);
-                DataRow childDr = child.Rows[child.Rows.Count-1];
-
-                // Skapa objekt för klassen funkton
-                functions funcObject = new functions();
-
-                MessageBox.Show(childDr["first_name"].ToString() + " " + childDr["last_name"].ToString()
-                    + "\n\n2 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 61)
-                    + "\n6 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 186)
-                    + "\n12 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 365), "Detaljer");
-                //
-                // Här ska vi visa fönstret som visar detaljerad information om barnets
-                //
-            }
-        }
-
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             if (selectedPersonId == null)
@@ -117,12 +99,76 @@ namespace Neo
             }
             else
             {
-                MessageBox.Show(selectedPersonId);
-
-                //
                 // Här ska vi visa fönstret där man kan ändra uppgifter om barnet
-                //
+                PersonForm personForm = new PersonForm(selectedPersonId, true, this);
+                selectedPersonId = null;
+                personForm.Show();
             }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            // Här ska vi visa ett tomt PersonForm 
+            PersonForm personForm = new PersonForm(selectedPersonId, false, this);
+            selectedPersonId = null;
+            personForm.Show();
+        }
+
+        public void PerformRefresh()
+        {
+            Console.WriteLine("UPDATE");
+            listView1.Items.Clear();
+            getDataFromDb();
+        }
+
+        private void DeleteChild_Click(object sender, EventArgs e)
+        {
+            if (selectedPersonId == null)
+            {
+                MessageBox.Show("Välj först ett barn från listan nedan.", "Fel");
+            }
+            else
+            {
+                // Ta bort ett barn från DB
+                DialogResult dialog = dialog = MessageBox.Show("Vill du verkligen ta bort " + selectedPersonId + "?", "Ta bort", MessageBoxButtons.YesNo);
+                if (dialog == DialogResult.Yes)
+                {
+                    string sqlQuery = "DELETE FROM Children WHERE person_id = '" + selectedPersonId + "'";
+                    dbOject.iuQuery(sqlQuery);
+                    selectedPersonId = null;
+                    PerformRefresh();
+                }
+            }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            if (selectedPersonId == null)
+            {
+                MessageBox.Show("Välj först ett barn från listan nedan.", "Fel");
+            }
+            else
+            {
+                // Hämta detaljer info från DB
+                var child = dbOject.executeDbQuery("select * from Children where person_id = " + selectedPersonId);
+                DataRow childDr = child.Rows[child.Rows.Count - 1];
+
+                // Skapa objekt för klassen funkton
+                functions funcObject = new functions();
+
+                MessageBox.Show(childDr["first_name"].ToString() + " " + childDr["last_name"].ToString()
+                    + "\n\n2 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 61, "yyyy-MM-dd")
+                    + "\n5-6 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 183, "yyyy-MM-dd")
+                    + "\n10-12 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 365, "yyyy-MM-dd")
+                    + "\n18-20 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 610, "yyyy-MM-dd")
+                    + "\n2 år: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 730, "yyyy-MM-dd")
+                    + "\n5 år: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 2013, "yyyy-MM-dd"), "Detaljer");
+            }
+        }
+
+        private void ManageForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            homeWindow.PerformRefresh();
         }
     }
 }
