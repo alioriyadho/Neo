@@ -153,6 +153,7 @@
             // 
             this.statusBox.FormattingEnabled = true;
             this.statusBox.Items.AddRange(new object[] {
+            "2 Månader",
             "5-6 Mån kontroll",
             "10-12 Mån kontroll",
             "18-20 Mån kontroll",
