@@ -61,13 +61,13 @@ namespace Neo
                 int countInterval = (funcObject.countDays(dr["planned_birthday"].ToString(), DateTime.Now.ToString("yyyy-MM-dd")) * -1);
                 if (countInterval < 0 && countInterval >= interval)
                 {
-                    if (status == 0 || status <= 2)
+                    if (status == 0 || status <= 3)
                     {
                         doctor = doctor + 30;
                         physiotherapist = physiotherapist + 30;
                         callings++;
                     }
-                    else if(status >= 3 || status <= 4)
+                    else if(status >= 4 && status <= 5)
                     {
                         doctor = doctor + 30;
                         physiotherapist = physiotherapist + 30;
@@ -77,7 +77,7 @@ namespace Neo
                 }
                 else
                 {
-                    if(status != 5)
+                    if(status != 6)
                     {
                         notifications = notifications + 1;
                     }
