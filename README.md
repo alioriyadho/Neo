@@ -1,6 +1,36 @@
 Välkommen till Neo
 ===================
 
+Figur 1 representerar systemets startsida. Poängen med startsidan är att komma fram till systemets olika delar på ett enkelt sätt. Användaren ska kunna få en överblick på hur det ser ut med planeringen inom de närmaste 35 dagarna. Man har även möjligheten att filtrera startsidans innehåll mellan två datum. 
+
+Figur 1
+
+I figur 2 ser man ”Hantera”-vyn, genom denna vy kan man lägga till, redigera, och ta bort användare. I den vyn kan man även se en fullständig lista på alla inmatade barn i systemet. 
+
+Figur 2
+
+Genom vyn ”Lägg till ett barn” kan man lägga till ett barn i systemet. Barnet kommer då att kunna följas upp och planeras in i rätt datum till de olika efterkontrollerna. Fältet ”Status” har en avgörande roll i systemet. I det fältet markerar man vilken efterkontroll barnet behöver gå till härnäst. Systemets uträkningar baseras på status. Därför är det viktigt att välja rätt status för att få rätt uträkningar i systemet.
+I fältet status kan man välja bland:
+-	2 månaders kontroll
+-	5 - 6 månaders kontroll
+-	10 - 12 månaders kontroll
+-	18 - 20 månaders kontroll
+-	2 års kontroll
+-	5 års kontroll
+-	Klar
+Statusfältet påverkar beräkningar av de olika läkartiderna, kallelser och notiserna. En ickefärdig kallelse som ligger utanför tidsspannet som väljs på startsidan kommer att hämna under fältet ”Notiser” som går att se på figur 1.
+
+Figur 3
+
+Fönstret ”Redigera” kan man framförallt använda när man ska ändra barnets status. Man kan även använda den när man vill ändra barnets och mammans uppgifter. Fältet ”Övriga kommenterar” går att använda som en logg på barnets utveckling (se figur 4). 
+
+Figur 4
+
+Funktionen ”Mer information” visar detaljerad information om de olika tiderna som barnet behöver bokas på. Man kommer enklast till den funktionen genom ”Hantera”-vyn (se figur 5).
+
+Figur 5
+
+
 Hur installerar jag Neo?
 ------------------------
 
