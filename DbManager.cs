@@ -34,19 +34,26 @@ namespace Neo
 
             // Sökvägen till mappen dokument
             String path = checkDb();
-
-            // Öppna en koppling till DB 
-            using (var cn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + path + "\\db.mdf;Integrated Security=True"))
-            using (var cmd = new SqlCommand(sql, cn))
+            try
             {
-                cn.Open();
-
-                // Kör Queryn
-                using (var reader = cmd.ExecuteReader())
+                // Öppna en koppling till DB 
+                using (var cn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + path + "\\db.mdf;Integrated Security=True"))
+                using (var cmd = new SqlCommand(sql, cn))
                 {
-                    // Ladda över till objektet som kommer att skickas tillbaka
-                    dt.Load(reader);
+                    cn.Open();
+
+                    // Kör Queryn
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        // Ladda över till objektet som kommer att skickas tillbaka
+                        dt.Load(reader);
+                    }
                 }
+                
+            }
+            catch (Exception)
+            {
+                throw;
             }
 
             // Skicka tillbaka objektet
@@ -57,19 +64,27 @@ namespace Neo
         {
             // Hämta sökvägen till db
             String path = checkDb();
+            try
+            {
+                // Skapa en connection
+                System.Data.SqlClient.SqlConnection sqlConnection1 = new System.Data.SqlClient.SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + path + "\\db.mdf;Integrated Security=True");
+                System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+                cmd.CommandType = System.Data.CommandType.Text;
 
-            // Slapa en connection
-            System.Data.SqlClient.SqlConnection sqlConnection1 = new System.Data.SqlClient.SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + path + "\\db.mdf;Integrated Security=True");
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
+                // Kör frågan
+                cmd.CommandText = sqlQuery;
+                cmd.Connection = sqlConnection1;
 
-            // Kör frågan
-            cmd.CommandText = sqlQuery;
-            cmd.Connection = sqlConnection1;
+                sqlConnection1.Open();
+                cmd.ExecuteNonQuery();
+                sqlConnection1.Close();
+            }
+            catch (Exception)
+            {
 
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+                throw;
+            }
+           
         }
     }
 }
