@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{82B4CEF2-D847-42A2-9227-E3C6407FB236}</ProjectGuid>
+    <ProjectGuid>{C9E1F1E4-0F08-4904-822F-DC1F07BF661A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Neo</RootNamespace>
