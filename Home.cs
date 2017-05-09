@@ -89,7 +89,7 @@ namespace Neo
 
             // Visa
             callingslabel.Text = callings.ToString();
-            timeLabel.Text = time.ToString();
+            timeLabel.Text = doctor.ToString();
             physiotherapistLabel.Text = physiotherapist.ToString();
             notificationsLabel.Text = notifications.ToString();
         }

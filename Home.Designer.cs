@@ -69,7 +69,7 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.Gold;
+            this.panel4.BackColor = System.Drawing.Color.Red;
             this.panel4.Controls.Add(this.label7);
             this.panel4.Controls.Add(this.notificationsLabel);
             this.panel4.Location = new System.Drawing.Point(513, 14);
@@ -170,7 +170,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Red;
+            this.panel2.BackColor = System.Drawing.Color.Gold;
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.timeLabel);
             this.panel2.Location = new System.Drawing.Point(181, 14);
@@ -181,16 +181,18 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Gold;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(40, 102);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 25);
+            this.label3.Size = new System.Drawing.Size(78, 25);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Minuter";
+            this.label3.Text = "Läkare";
             // 
             // timeLabel
             // 
+            this.timeLabel.BackColor = System.Drawing.Color.Gold;
             this.timeLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeLabel.ForeColor = System.Drawing.Color.White;

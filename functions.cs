@@ -19,6 +19,12 @@ namespace Neo
             return String.Format("{0:"+ format + "}", MyNewDateValue);
         }
 
+        public string formatDate(string startDate, string format)
+        {
+            DateTime time = DateTime.Parse(startDate);
+            return String.Format("{0:" + format + "}", time);
+        }
+
         public string[] splitDate(string strDate)
         {
             string[] removeTime = strDate.Split(' ');
@@ -28,31 +34,36 @@ namespace Neo
 
         public string translateStatusCode(int code)
         {
-            string statusVar = "";
+            string statusVar = "Klar";
 
-            if(code == 0)
+            if (code == 0)
             {
-                statusVar = "5-6 månaders kontroll";
+                statusVar = "2 månaders kontroll";
             }
 
             if (code == 1)
             {
-                statusVar = "10-12 månaders kontroll";
+                statusVar = "5-6 månaders kontroll";
             }
 
             if (code == 2)
             {
-                statusVar = "18-20 månaders kontroll";
+                statusVar = "10-12 månaders kontroll";
             }
 
             if (code == 3)
             {
-                statusVar = "2 års kontroll";
+                statusVar = "18-20 månaders kontroll";
             }
 
             if (code == 4)
             {
-                statusVar = "5 års kontroll";
+                statusVar = "2 års kontroll";
+            }
+
+            if (code == 5)
+            {
+                statusVar = "5.5 års kontroll";
             }
 
             return statusVar;

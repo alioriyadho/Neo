@@ -51,11 +51,11 @@ namespace Neo
                 DataRow dr = dt.Rows[i];
 
                 // Visa de olika attibuten i rätt kolumn
-                ListViewItem listitem = new ListViewItem(dr["person_id"].ToString());
+                ListViewItem listitem = new ListViewItem(dr["person_id"].ToString().Insert(6, "-"));
                 listitem.SubItems.Add(dr["first_name"].ToString());
                 listitem.SubItems.Add(dr["last_name"].ToString());
                 listitem.SubItems.Add(dr["mother_first_name"].ToString() + " " + dr["mother_last_name"].ToString());
-                listitem.SubItems.Add(dr["planned_birthday"].ToString());
+                listitem.SubItems.Add(funcObject.formatDate(dr["planned_birthday"].ToString(), "yyyy-MM-dd"));
 
                 // Visa Ja eller Nej
                 if (dr["interpreter"].ToString() == "1")
@@ -87,7 +87,7 @@ namespace Neo
             {
                 // Lagra det markerade idet i en global variabel
                 String text = listView1.Items[intselectedindex].Text;
-                selectedPersonId = text;
+                selectedPersonId = text.Replace("-", "");
             }
         }
 
@@ -157,6 +157,7 @@ namespace Neo
                 functions funcObject = new functions();
 
                 MessageBox.Show(childDr["first_name"].ToString() + " " + childDr["last_name"].ToString()
+                    + "\nStatus: " + funcObject.translateStatusCode(int.Parse(childDr["status"].ToString()))
                     + "\n\n2 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 61, "yyyy-MM-dd")
                     + "\n5-6 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 183, "yyyy-MM-dd")
                     + "\n10-12 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 365, "yyyy-MM-dd")
