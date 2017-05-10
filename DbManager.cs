@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Neo
 {
@@ -51,8 +52,9 @@ namespace Neo
                 }
                 
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                MessageBox.Show(e.Message);
                 throw;
             }
 
@@ -79,9 +81,9 @@ namespace Neo
                 cmd.ExecuteNonQuery();
                 sqlConnection1.Close();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                
                 throw;
             }
            

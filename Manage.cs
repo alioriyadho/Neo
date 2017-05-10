@@ -133,12 +133,31 @@ namespace Neo
                 DialogResult dialog = dialog = MessageBox.Show("Vill du verkligen ta bort " + selectedPersonId + "?", "Ta bort", MessageBoxButtons.YesNo);
                 if (dialog == DialogResult.Yes)
                 {
-                    string sqlQuery = "DELETE FROM Children WHERE person_id = '" + selectedPersonId + "'";
-                    dbOject.iuQuery(sqlQuery);
-                    selectedPersonId = null;
-                    PerformRefresh();
+                    // Hämta in data.
+                    var dt = dbOject.executeDbQuery("SELECT * FROM Children WHERE person_id='" + selectedPersonId + "'");
+                    if(dt.Rows.Count > 0)
+                    {
+                        deletePerson(selectedPersonId);
+                    }
+                    else
+                    {
+                        string personNr = selectedPersonId.Insert(6, "-");
+                        dt = dbOject.executeDbQuery("SELECT * FROM Children WHERE person_id='" + personNr + "'");
+                        if (dt.Rows.Count > 0)
+                        {
+                            deletePerson(personNr);
+                        }
+                    }
                 }
             }
+        }
+
+        void deletePerson(string personId)
+        {
+            string sqlQuery = "DELETE FROM Children WHERE person_id = '" + personId + "'";
+            dbOject.iuQuery(sqlQuery);
+            selectedPersonId = null;
+            PerformRefresh();
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
@@ -150,7 +169,7 @@ namespace Neo
             else
             {
                 // Hämta detaljer info från DB
-                var child = dbOject.executeDbQuery("select * from Children where person_id = " + selectedPersonId);
+                var child = dbOject.executeDbQuery("select * from Children where person_id = '" + selectedPersonId + "'");
                 DataRow childDr = child.Rows[child.Rows.Count - 1];
 
                 // Skapa objekt för klassen funkton

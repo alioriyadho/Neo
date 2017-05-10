@@ -75,5 +75,12 @@ namespace Neo
             DateTime d2 = DateTime.Parse(from);
             return int.Parse((d2 - d1).TotalDays.ToString());
         }
+
+        public bool IsNumeric(string s)
+        {
+            float output;
+            return float.TryParse(s, out output);
+        }
+
     }
 }

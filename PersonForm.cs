@@ -52,17 +52,27 @@ namespace Neo
                     mother_lastname.Text = dr["mother_last_name"].ToString();
                     comments.Text = dr["comments"].ToString();
 
-                    if(dr["status"].ToString() != "")
+                    if(dr["status"].ToString() != "" && dr["status"] != null)
                     {
-                        statusBox.SelectedIndex = int.Parse(dr["status"].ToString());
+                        if (funcObject.IsNumeric(dr["status"].ToString()))
+                        {
+                            statusBox.SelectedIndex = int.Parse(dr["status"].ToString());
+                        }
+                        else
+                        {
+                            statusBox.SelectedIndex = 0;
+                        }
                     }
 
                     // Konvertera och visa datum
                     string[] date = funcObject.splitDate(dr["planned_birthday"].ToString());
-                    birthdayPicker.Value = new DateTime(int.Parse(date[0]), int.Parse(date[1]), int.Parse(date[2]));
+                    if(date.Count() > 0)
+                    {
+                        birthdayPicker.Value = new DateTime(int.Parse(date[0]), int.Parse(date[1]), int.Parse(date[2]));
+                    }
 
                     // Tolk
-                    if(dr["interpreter"].ToString() == "0")
+                    if (dr["interpreter"].ToString() == "0")
                     {
                         interpreter.Checked = false;
                     }
@@ -93,7 +103,7 @@ namespace Neo
             else
             {
                 // Kontroll personnymmret 
-                if (person_id.Text.Length < 10)
+                if (person_id.Text.Length < 10 || funcObject.IsNumeric(person_id.Text) == false || person_id.Text.Length > 10)
                 {
                     MessageBox.Show("Personnummeret är ogiltigt");
                 }
@@ -137,7 +147,7 @@ namespace Neo
 
             // Skapa
             string sqlQuery = "INSERT INTO Children (person_id, first_name, last_name, mother_first_name, mother_last_name, planned_birthday, interpreter, comments, status)" 
-                            + "VALUES('"+person_id.Text+"', '"+child_firstname.Text+"', '"+child_lastname.Text+"', '"+mother_firstname.Text+"', '"+mother_lastname.Text+"', '"+birthdayPicker.Value.ToShortDateString()+"', '"+interpreterValue+"', '"+comments.Text+"', '"+ statusBox.SelectedIndex.ToString() +"')";
+                            + "VALUES('"+person_id.Text+ "', '"+child_firstname.Text+"', '"+child_lastname.Text+"', '"+mother_firstname.Text+"', '"+mother_lastname.Text+"', '"+birthdayPicker.Value.ToShortDateString()+"', '"+interpreterValue+"', '"+comments.Text+"', '"+ statusBox.SelectedIndex.ToString() +"')";
 
             // Executaaaaa
             dbOject.iuQuery(sqlQuery);
