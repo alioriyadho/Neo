@@ -184,9 +184,9 @@
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label6.Location = new System.Drawing.Point(26, 103);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 13);
+            this.label6.Size = new System.Drawing.Size(85, 13);
             this.label6.TabIndex = 13;
-            this.label6.Text = "Planerad födsel";
+            this.label6.Text = "Beräknad partus";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1

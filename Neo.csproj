@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>H:\Neonatalvården\LIVE\v.1.0.0.2\</PublishUrl>
+    <PublishUrl>H:\Neonatalvården\LIVE\v1.1.0.0\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,8 +26,8 @@
     <ProductName>Neo</ProductName>
     <PublisherName>Fredrik Öller &amp; Ali Riyadh</PublisherName>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -68,10 +68,13 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Stork With Bundle-96.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

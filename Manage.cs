@@ -21,7 +21,10 @@ namespace Neo
         // Skapa ett objekt för klassen
         DbManager dbOject = new DbManager();
 
-        public Manage(string sqlQueryIn, NeoHomePage homeIn)
+        // DataTabellen som kommer in
+        DataTable dataFromOtherView;
+
+        public Manage(string sqlQueryIn, DataTable dataIn, NeoHomePage homeIn)
         {
             InitializeComponent();
 
@@ -30,6 +33,13 @@ namespace Neo
 
             // lagra frågan i variabel
             sqlQuery = sqlQueryIn;
+
+            if(dataIn != null)
+            {
+                dataFromOtherView = dataIn.Copy();
+            }
+
+            // init funktions klassen
             funcObject = new functions();
 
             // 
@@ -42,9 +52,18 @@ namespace Neo
         public void getDataFromDb()
         {
             listView1.View = View.Details;
-           
+
             // Hämta in data.
-            var dt = dbOject.executeDbQuery(sqlQuery);
+            DataTable dt;
+            if (sqlQuery != null)
+            {
+                dt = dbOject.executeDbQuery(sqlQuery);
+            }
+            else
+            {
+                dt = dataFromOtherView.Copy();
+            }
+
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 // Hämta objektet
@@ -54,7 +73,8 @@ namespace Neo
                 ListViewItem listitem = new ListViewItem(dr["person_id"].ToString().Insert(6, "-"));
                 listitem.SubItems.Add(dr["first_name"].ToString());
                 listitem.SubItems.Add(dr["last_name"].ToString());
-                listitem.SubItems.Add(dr["mother_first_name"].ToString() + " " + dr["mother_last_name"].ToString());
+                listitem.SubItems.Add(funcObject.translateStatusCode(int.Parse(dr["status"].ToString())));
+                listitem.SubItems.Add(funcObject.getDateByStatus(funcObject.formatDate(dr["planned_birthday"].ToString(), "yyyy-MM-dd"), int.Parse(dr["status"].ToString())));
                 listitem.SubItems.Add(funcObject.formatDate(dr["planned_birthday"].ToString(), "yyyy-MM-dd"));
 
                 // Visa Ja eller Nej
@@ -168,21 +188,42 @@ namespace Neo
             }
             else
             {
-                // Hämta detaljer info från DB
+                // Kontroll
+                Boolean control = false;
+
+                // Hämta in data.
                 var child = dbOject.executeDbQuery("select * from Children where person_id = '" + selectedPersonId + "'");
-                DataRow childDr = child.Rows[child.Rows.Count - 1];
+                if (child.Rows.Count > 0)
+                {
+                    control = true;
+                }
+                else
+                {
+                    string personNr = selectedPersonId.Insert(6, "-");
+                    child = dbOject.executeDbQuery("select * from Children where person_id = '" + personNr + "'");
+                    if (child.Rows.Count > 0)
+                    {
+                        control = true;
+                    }
+                }
 
-                // Skapa objekt för klassen funkton
-                functions funcObject = new functions();
+                // Om det finns ett bra visa
+                if(control == true)
+                {
+                    DataRow childDr = child.Rows[child.Rows.Count - 1];
 
-                MessageBox.Show(childDr["first_name"].ToString() + " " + childDr["last_name"].ToString()
-                    + "\nStatus: " + funcObject.translateStatusCode(int.Parse(childDr["status"].ToString()))
-                    + "\n\n2 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 61, "yyyy-MM-dd")
-                    + "\n5-6 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 183, "yyyy-MM-dd")
-                    + "\n10-12 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 365, "yyyy-MM-dd")
-                    + "\n18-20 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 610, "yyyy-MM-dd")
-                    + "\n2 år: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 730, "yyyy-MM-dd")
-                    + "\n5 år: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 2013, "yyyy-MM-dd"), "Detaljer");
+                    // Skapa objekt för klassen funkton
+                    functions funcObject = new functions();
+
+                    MessageBox.Show(childDr["first_name"].ToString() + " " + childDr["last_name"].ToString()
+                        + "\nStatus: " + funcObject.translateStatusCode(int.Parse(childDr["status"].ToString()))
+                        + "\n\n2 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 61, "yyyy-MM-dd")
+                        + "\n5-6 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 183, "yyyy-MM-dd")
+                        + "\n10-12 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 365, "yyyy-MM-dd")
+                        + "\n18-20 Månader: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 610, "yyyy-MM-dd")
+                        + "\n2 år: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 730, "yyyy-MM-dd")
+                        + "\n5 år: " + funcObject.getDateByStartDatePlusInterval(childDr["planned_birthday"].ToString(), 2013, "yyyy-MM-dd"), "Detaljer");
+                }
             }
         }
 

@@ -39,50 +39,57 @@ namespace Neo
 
                 // Hämta in data.
                 var dt = dbOject.executeDbQuery("SELECT * FROM Children WHERE person_id='" + selectedPersonId + "'");
-                for (int i = 0; i < dt.Rows.Count; i++)
+                if(dt.Rows.Count > 0)
                 {
-                    // Hämta objektet
-                    DataRow dr = dt.Rows[i];
-
-                    // Visa de olika attibuten i rätt kolumn
-                    person_id.Text = dr["person_id"].ToString();
-                    child_firstname.Text = dr["first_name"].ToString();
-                    child_lastname.Text = dr["last_name"].ToString();
-                    mother_firstname.Text = dr["mother_first_name"].ToString();
-                    mother_lastname.Text = dr["mother_last_name"].ToString();
-                    comments.Text = dr["comments"].ToString();
-
-                    if(dr["status"].ToString() != "" && dr["status"] != null)
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        if (funcObject.IsNumeric(dr["status"].ToString()))
+                        // Hämta objektet
+                        DataRow dr = dt.Rows[i];
+
+                        // Visa de olika attibuten i rätt kolumn
+                        person_id.Text = dr["person_id"].ToString();
+                        child_firstname.Text = dr["first_name"].ToString();
+                        child_lastname.Text = dr["last_name"].ToString();
+                        mother_firstname.Text = dr["mother_first_name"].ToString();
+                        mother_lastname.Text = dr["mother_last_name"].ToString();
+                        comments.Text = dr["comments"].ToString();
+
+                        if (dr["status"].ToString() != "" && dr["status"] != null)
                         {
-                            statusBox.SelectedIndex = int.Parse(dr["status"].ToString());
+                            if (funcObject.IsNumeric(dr["status"].ToString()))
+                            {
+                                statusBox.SelectedIndex = int.Parse(dr["status"].ToString());
+                            }
+                            else
+                            {
+                                statusBox.SelectedIndex = 0;
+                            }
+                        }
+
+                        // Konvertera och visa datum
+                        string[] date = funcObject.splitDate(dr["planned_birthday"].ToString());
+                        if (date.Count() > 0)
+                        {
+                            birthdayPicker.Value = new DateTime(int.Parse(date[0]), int.Parse(date[1]), int.Parse(date[2]));
+                        }
+
+                        // Tolk
+                        if (dr["interpreter"].ToString() == "0")
+                        {
+                            interpreter.Checked = false;
                         }
                         else
                         {
-                            statusBox.SelectedIndex = 0;
+                            interpreter.Checked = true;
                         }
-                    }
 
-                    // Konvertera och visa datum
-                    string[] date = funcObject.splitDate(dr["planned_birthday"].ToString());
-                    if(date.Count() > 0)
-                    {
-                        birthdayPicker.Value = new DateTime(int.Parse(date[0]), int.Parse(date[1]), int.Parse(date[2]));
+                        // titel
+                        this.Text = dr["first_name"].ToString() + " " + dr["first_name"].ToString() + " (" + dr["person_id"].ToString() + ")";
                     }
-
-                    // Tolk
-                    if (dr["interpreter"].ToString() == "0")
-                    {
-                        interpreter.Checked = false;
-                    }
-                    else
-                    {
-                        interpreter.Checked = true;
-                    }
-
-                    // titel
-                    this.Text = dr["first_name"].ToString() + " " + dr["first_name"].ToString() + " (" + dr["person_id"].ToString() + ")";
+                } 
+                else
+                {
+                    MessageBox.Show("Kunde inte hitta " + personidIn);
                 }
             } 
             else

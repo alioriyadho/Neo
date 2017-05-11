@@ -42,6 +42,7 @@
             this.plannedDateCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.interpeterCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.nextDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,6 +104,7 @@
             this.firstnameCol,
             this.lastnameCol,
             this.motherCol,
+            this.nextDate,
             this.plannedDateCol,
             this.interpeterCol});
             this.listView1.FullRowSelect = true;
@@ -126,27 +128,28 @@
             // firstnameCol
             // 
             this.firstnameCol.Text = "Förnamn";
-            this.firstnameCol.Width = 119;
+            this.firstnameCol.Width = 100;
             // 
             // lastnameCol
             // 
             this.lastnameCol.Text = "Efternamn";
-            this.lastnameCol.Width = 114;
+            this.lastnameCol.Width = 93;
             // 
             // motherCol
             // 
-            this.motherCol.Text = "Mor";
-            this.motherCol.Width = 111;
+            this.motherCol.Text = "Status";
+            this.motherCol.Width = 96;
             // 
             // plannedDateCol
             // 
-            this.plannedDateCol.Text = "Planerad födsel";
+            this.plannedDateCol.DisplayIndex = 3;
+            this.plannedDateCol.Text = "Beräknad partus";
             this.plannedDateCol.Width = 118;
             // 
             // interpeterCol
             // 
             this.interpeterCol.Text = "Tolk";
-            this.interpeterCol.Width = 96;
+            this.interpeterCol.Width = 80;
             // 
             // statusStrip1
             // 
@@ -155,6 +158,11 @@
             this.statusStrip1.Size = new System.Drawing.Size(687, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // nextDate
+            // 
+            this.nextDate.Text = "Besöksdatum";
+            this.nextDate.Width = 88;
             // 
             // Manage
             // 
@@ -191,5 +199,6 @@
         private System.Windows.Forms.ColumnHeader interpeterCol;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripButton DeleteChild;
+        private System.Windows.Forms.ColumnHeader nextDate;
     }
 }

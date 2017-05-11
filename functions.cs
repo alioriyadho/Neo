@@ -69,6 +69,43 @@ namespace Neo
             return statusVar;
         }
 
+        public string getDateByStatus(string dateIn, int code)
+        {
+            string date = "";
+
+            if (code == 0)
+            {
+                date = getDateByStartDatePlusInterval(dateIn, 61, "yyyy-MM-dd");
+            }
+
+            if (code == 1)
+            {
+                date = getDateByStartDatePlusInterval(dateIn, 183, "yyyy-MM-dd");
+            }
+
+            if (code == 2)
+            {
+                date = getDateByStartDatePlusInterval(dateIn, 365, "yyyy-MM-dd");
+            }
+
+            if (code == 3)
+            {
+                date = getDateByStartDatePlusInterval(dateIn, 610, "yyyy-MM-dd");
+            }
+
+            if (code == 4)
+            {
+                date = getDateByStartDatePlusInterval(dateIn, 730, "yyyy-MM-dd");
+            }
+
+            if (code == 5)
+            {
+                date = getDateByStartDatePlusInterval(dateIn, 2013, "yyyy-MM-dd");
+            }
+
+            return date;
+        }
+
         public int countDays(string to, string from)
         {
             DateTime d1 = DateTime.Parse(to);
