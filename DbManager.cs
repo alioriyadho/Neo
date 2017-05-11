@@ -54,6 +54,7 @@ namespace Neo
             }
             catch (Exception e)
             {
+                MessageBox.Show(path);
                 MessageBox.Show(e.Message);
                 throw;
             }
@@ -83,7 +84,8 @@ namespace Neo
             }
             catch (Exception e)
             {
-                
+                MessageBox.Show(path);
+                MessageBox.Show(e.Message);
                 throw;
             }
            

@@ -151,6 +151,8 @@
             // 
             // statusBox
             // 
+            this.statusBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.statusBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.statusBox.FormattingEnabled = true;
             this.statusBox.Items.AddRange(new object[] {
             "2 Månader",

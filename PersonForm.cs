@@ -145,12 +145,21 @@ namespace Neo
         {
             string interpreterValue = getInterpreterValue();
 
-            // Skapa
-            string sqlQuery = "INSERT INTO Children (person_id, first_name, last_name, mother_first_name, mother_last_name, planned_birthday, interpreter, comments, status)" 
-                            + "VALUES('"+person_id.Text+ "', '"+child_firstname.Text+"', '"+child_lastname.Text+"', '"+mother_firstname.Text+"', '"+mother_lastname.Text+"', '"+birthdayPicker.Value.ToShortDateString()+"', '"+interpreterValue+"', '"+comments.Text+"', '"+ statusBox.SelectedIndex.ToString() +"')";
-
-            // Executaaaaa
-            dbOject.iuQuery(sqlQuery);
+            // Hämta in data.
+            var dt = dbOject.executeDbQuery("SELECT * FROM Children WHERE person_id='" + person_id.Text + "'");
+            if (dt.Rows.Count == 0)
+            {
+                // Skapa
+                string sqlQuery = "INSERT INTO Children (person_id, first_name, last_name, mother_first_name, mother_last_name, planned_birthday, interpreter, comments, status)"
+                                + "VALUES('" + person_id.Text + "', '" + child_firstname.Text + "', '" + child_lastname.Text + "', '" + mother_firstname.Text + "', '" + mother_lastname.Text + "', '" + birthdayPicker.Value.ToShortDateString() + "', '" + interpreterValue + "', '" + comments.Text + "', '" + statusBox.SelectedIndex.ToString() + "')";
+                
+                // Executaaaaa
+                dbOject.iuQuery(sqlQuery);
+            } 
+            else
+            {
+                MessageBox.Show("Barnet finns redan inlagd i systemet.");
+            }
         }
 
         public string getInterpreterValue()
